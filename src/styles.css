@@ -40,7 +40,11 @@ main h1 {
   font-size: 1.5rem;
   font-weight: 700;
 }
-
+main p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #555;
+}
 /* Estilização do formulário */
 form {
   background-color: #ffffff;
@@ -104,6 +108,25 @@ main a {
 main a:hover {
   color: #5e7869;
   text-decoration: underline;
+}
+
+/* Botões CRUD Motivacional */
+.custom-btn {
+  display: inline-block;
+  background-color: #769382;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.custom-btn:hover {
+  background-color: #5e7869;
+  color: white;
+  text-decoration: none;
 }
 
 /* Estilização geral da tabela */
