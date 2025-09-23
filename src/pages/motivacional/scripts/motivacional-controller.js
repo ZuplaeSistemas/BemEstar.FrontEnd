@@ -26,7 +26,6 @@ class MotivacionalController {
     if (table) {
       let tbody = table.querySelector("tbody");
       let list = await this.getAll();
-      console.log(list);
       if (list) {
         tbody.innerHTML = "";
         list.forEach(function (motivacional) {
