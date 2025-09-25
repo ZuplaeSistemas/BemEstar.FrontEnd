@@ -1,8 +1,4 @@
-import { DicaController } from "../scripts/dica-controller.js";
-
-let controller = new DicaController();
-controller.bindTable();
-import { DicaRepositoryApi } from "./dica-respository.js";
+import { DicaRepositoryApi } from "./dica-repository.js";
 import { DicaModel } from "./dica-model.js";
 
 class DicaController {
