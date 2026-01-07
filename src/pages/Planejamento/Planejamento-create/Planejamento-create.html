@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="../../../Assets/DEA25-Projetos-PressKit-Logos-YouX-Ícone-Marsala.ico">
+  <title>Cadastrar Planejamento</title>
+  <link rel="stylesheet" href="../../../reset.css">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body>
+  <header>
+    <img src="https://youxgroup.com.br/wp-content/uploads/2022/12/logo-youX-branco.svg" alt="Logo YouX" width="150">
+    <nav>
+      <ul class="menu">
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./planejamento-create.html">Cadastrar</a></li>
+        <li><a href="./../planejamento-list/planejamento-list.html">Listar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-bg">
+    <h1>Cadastrar Planejamento</h1>
+
+    <!-- FORM PRINCIPAL -->
+    <form id="planning-form">
+      <div>
+        <label for="sprint">Sprint:</label>
+        <input type="text" id="sprint" name="sprint" required placeholder="Sprint">
+      </div>
+
+      <div>
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" required placeholder="Projeto">
+      </div>
+
+      <div>
+        <select id="tipo" name="tipo" style="display: block; margin: 0 auto;" required>
+          <option value="">Selecione o tipo de planejamento</option>
+          <option value="fibonacci">Fibonacci</option>
+          <option value="esforco_valor">Esforço + Valor</option>
+          <option value="horas">Horas</option>
+        </select>
+      </div>
+      <br>
+      <button type="button" id="next-issues" style="display: block; margin: 0 auto;"> Adicionar Issues</button>
+    </form>
+
+    <!-- AREA DE ISSUES (oculta até preencher os dados principais) -->
+    <section id="issues-section" style="display:none; margin-top:20px;">
+      <h2>Adicionar Issues</h2>
+      <div>
+  <input type="text" id="issue-input" placeholder="Issue">
+  <button type="button" id="add-issue" style="background-color: #8E2B39; color: #f4f4f4; border: none; padding: 5px 10px; cursor: pointer; margin-left: 10px;">
+    Adicionar Issue
+  </button>
+</div>
+
+      <ul id="issue-list" style="margin-top:15px; list-style: none; padding:0;">
+        <li style="color:#343434;">Nenhuma issue adicionada.</li>
+      </ul>
+
+      <button type="button" id="save-planning" style="background-color: #8E2B39; color: #f4f4f4; border: none; padding: 5px 10px; cursor: pointer; margin-left: 10px;">
+        Salvar Planejamento</button>
+    </section>
+
+    
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - YouXGroup</p>
+  </footer>
+
+  <script type="module">
+    const form = document.getElementById("planning-form");
+    const nextBtn = document.getElementById("next-issues");
+    const issuesSection = document.getElementById("issues-section");
+    const issueInput = document.getElementById("issue-input");
+    const addIssueBtn = document.getElementById("add-issue");
+    const issueList = document.getElementById("issue-list");
+    const saveBtn = document.getElementById("save-planning");
+
+    let planningData = {};
+    let issues = [];
+
+    // Ir para etapa de Issues
+    nextBtn.addEventListener("click", () => {
+      const sprint = form.sprint.value.trim();
+      const time = form.time.value.trim();
+      const tipo = form.tipo.value;
+
+      if (!sprint || !time || !tipo) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      planningData = { sprint, time, tipo };
+      form.style.display = "none";
+      issuesSection.style.display = "block";
+    });
+
+    // Adicionar issue
+    addIssueBtn.addEventListener("click", () => {
+      const issue = issueInput.value.trim();
+      if (!issue) return;
+
+      if (issues.length === 0) {
+        issueList.innerHTML = "";
+      }
+
+      issues.push(issue);
+
+      const li = document.createElement("li");
+      li.textContent = `Issue: ${issue}`;
+      issueList.appendChild(li);
+
+      issueInput.value = "";
+      issueInput.focus();
+    });
+
+    // Salvar planejamento
+    saveBtn.addEventListener("click", () => {
+      if (issues.length === 0) {
+        alert("Adicione pelo menos uma issue!");
+        return;
+      }
+
+      planningData.issues = issues;
+
+      // Simula salvar no localStorage (ou API futuramente)
+      const stored = JSON.parse(localStorage.getItem("plannings") || "[]");
+      stored.push(planningData);
+      localStorage.setItem("plannings", JSON.stringify(stored));
+
+      // Redireciona para a listagem
+      window.location.href = "./../planejamento-list/planejamento-list.html";
+    });
+  </script>
+</body>
+</html>

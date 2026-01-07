@@ -1,15 +1,15 @@
-class HabitoRepositoryApi {
+class PlanejamentoRepositoryApi {
   constructor() {
-    this.baseUrl = "http://localhost:5132/api/habitos";
+    this.baseUrl = "https://localhost:7116/api/planejamento";
   }
 
-  create(habito) {
+  create(planejamento) {
     fetch(this.baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(habito),
+      body: JSON.stringify(planejamento),
     });
   }
   async getAll() {
@@ -19,4 +19,4 @@ class HabitoRepositoryApi {
   }
 }
 
-export { HabitoRepositoryApi };
+export { PlanejamentoRepositoryApi };

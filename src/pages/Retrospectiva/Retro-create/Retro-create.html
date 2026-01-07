@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestao Agil - Cadastrar Retrospectiva</title>
+  <link rel="stylesheet" href="../../../reset.css">
+  <link rel="stylesheet" href="../../../styles.css">
+
+</head>
+
+<body>
+  <header>
+    <img src="https://youxgroup.com.br/wp-content/uploads/2022/12/logo-youX-branco.svg" alt="Logo YouX" width="150">
+    <nav>
+      <ul class="menu">
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../Dashboard/Index.html">Dashboard</a></li>
+        <li><a href="./../Planejamento/index.html">Planejamento</a></li>
+        <li><a href="./../Retro-list/Retro-list.html">Listar Retrospectivas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-bg">
+    <h1>Criar Retrospectiva</h1>
+    <form id="retro-form">
+      <label for="team">Nome do Time:</label>
+      <input type="text" id="team" placeholder="Time" required>
+
+      <label for="sprint">Número da Sprint:</label>
+      <input type="text" id="sprint" placeholder="Sprint" required>
+
+<a href="./../Retro-list/Retro-list.html" style="background-color: #8E2B39; color: #f4f4f4; border: none; padding: 5px 10px; cursor: pointer; margin-left: 10px; text-decoration: none; border-radius: 4px;">
+  Salvar Retrospectiva
+</a>
+
+
+    </form>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - YouXGroup</p>
+  </footer>
+
+  <script type="module" src="./retro-create.js"></script>
+</body>
+</html>

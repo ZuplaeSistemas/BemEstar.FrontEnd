@@ -1,184 +1,263 @@
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f3efe3;
-  color: #333;
-}
 
-header {
-  background-color: #769382;
-  padding: 10px 0;
-}
+  /* ========================
+     ESTILOS GERAIS
+  ========================= */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F4F4;
+    color: #343434;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ocupa altura total da tela */
+    line-height: 1.6;
+  }
 
-.menu {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
+  main {
+    flex: 1;
+    height: 720px; /* altura desejada da main */
+    padding: 40px;
+    text-align: center;
+  }
 
-.menu li {
-  margin: 0 15px;
-}
+  main h1 {
+    color: #343434;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
 
-.menu a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+  main p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #8E2B39;
+  }
 
-.menu a:hover {
-  text-decoration: underline;
-}
-main {
-  padding: 40px;
-  text-align: center;
-}
+  /* ========================
+     CABEÇALHO
+  ========================= */
+  header {
+    background-color: #8E2B39;
+    color: #F4F4F4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+  }
 
-main h1 {
-  color: #4f6b57;
-  margin-bottom: 30px;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-main p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  color: #555;
-}
-/* Estilização do formulário */
-form {
-  background-color: #ffffff;
-  padding: 30px;
-  margin: 20px auto;
-  max-width: 500px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
+  header h1 {
+    margin: 0;
+    font-size: 1.5em;
+  }
 
-/* Labels */
-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #333;
-}
+  header button {
+    background-color: #8E2B39;
+    color: #F4F4F4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
 
-/* Inputs e textarea */
-form input[type="text"],
-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  resize: vertical; /* Permite ajustar a altura do textarea */
-  box-sizing: border-box;
-}
+  header button:hover {
+    background-color: #a83c4d;
+  }
 
-/* Botões */
-form button {
-  background-color: #769382;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  margin-right: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
 
-form button:hover {
-  background-color: #5e7869;
-}
+  .menu a {
+    color: #F4F4F4;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-/* Link de voltar */
-main a {
-  display: inline-block;
-  margin-top: 20px;
-  color: #769382;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
+  .menu a:hover {
+    text-decoration: underline;
+  }
 
-main a:hover {
-  color: #5e7869;
-  text-decoration: underline;
-}
+  /* ========================
+     FORMULÁRIOS E BOTÕES
+  ========================= */
+  form {
+    background-color: #F4F4F4;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
 
-/* Botões CRUD Motivacional */
-.custom-btn {
-  display: inline-block;
-  background-color: #769382;
-  color: white;
-  padding: 12px 25px;
-  margin: 10px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-.custom-btn:hover {
-  background-color: #5e7869;
-  color: white;
-  text-decoration: none;
-}
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #343434;
+  }
 
-/* Estilização geral da tabela */
-table {
-  width: 100%;
-  max-width: 800px;
-  margin: 30px auto;
-  border-collapse: collapse;
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
+  form input[type="text"],
+  form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #8E2B39;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
 
-/* Cabeçalho da tabela */
-table thead {
-  background-color: #769382;
-  color: white;
-  text-align: left;
-}
+  form button {
+    background-color: #8E2B39;
+    color: #F4F4F4;
+    border: none;
+    padding: 12px 20px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
 
-table th,
-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-}
+  form button:hover {
+    background-color: #a83c4d;
+  }
 
-/* Linhas do corpo */
-table tbody tr:nth-child(even) {
-  background-color: #f3f3f3; /* linha alternada */
-}
+  .custom-btn {
+    display: inline-block;
+    background-color: #8E2B39;
+    color: #F4F4F4;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
 
-table tbody tr:hover {
-  background-color: #e1e7e2; /* efeito hover */
-}
+  .custom-btn:hover {
+    background-color: #a83c4d;
+  }
 
-/* Mensagem de sem dados */
-table tbody td[colspan] {
-  text-align: center;
-  color: #999;
-  font-style: italic;
-}
+  /* ========================
+     TABELAS
+  ========================= */
+  table {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-footer {
-  position: fixed;
-  background-color: #769382;
-  color: white;
-  text-align: center;
-  padding: 15px 0;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
+  table thead {
+    background-color: #8E2B39;
+    color: #F4F4F4;
+  }
+
+  table th,
+  table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #F4F4F4;
+    text-align: center;
+  }
+
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  table tbody td[colspan] {
+    text-align: center;
+    color: #343434;
+    font-style: italic;
+  }
+
+  /* ========================
+     QUADRO DE COLUNAS (RETRO)
+  ========================= */
+  .board {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .column {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .column h2 {
+    color: #343434;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #8E2B39;
+    padding-bottom: 5px;
+  }
+
+  .card {
+    background-color: #f4f4f4;
+    color: #343434;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 8px 0;
+    cursor: grab;
+  }
+
+  .add-card-btn, .add-column-btn {
+    background-color: #8e2b39;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .add-card-btn:hover, .add-column-btn:hover {
+    background-color: #a83c4d;
+  }
+
+  /* ========================
+     PLANO DE FUNDO E FOOTER
+  ========================= */
+  .main-bg {
+    background-image: url('../src/Assets/fundo\ tela.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    height: 740px;
+  }
+
+  footer {
+    background-color: #8E2B39;
+    color: #F4F4F4;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }

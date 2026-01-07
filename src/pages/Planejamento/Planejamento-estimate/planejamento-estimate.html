@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestao Agil - Estimativa</title>
+  <link rel="icon" type="image/x-icon" href="./Assets/DEA25-Projetos-PressKit-Logos-YouX-Ícone-Marsala.ico">
+  <link rel="stylesheet" href="../../../reset.css">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+<body>
+  <header>
+    <img src="https://youxgroup.com.br/wp-content/uploads/2022/12/logo-youX-branco.svg" alt="Logo YouX" width="150">
+    <nav>
+      <ul class="menu">
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../planejamento-list/planejamento-list.html">Listar Planejamentos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-bg">
+    <h1>Votação da Sprint</h1>
+    <div id="sprint-info"></div>
+
+    <section id="issues-list"></section>
+
+    <a href="./../planejamento-list/planejamento-list.html" class="custom-btn">Voltar</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - YouXGroup</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id"); // ID do planejamento
+    const plannings = JSON.parse(localStorage.getItem("plannings") || "[]");
+    const planning = plannings[id];
+
+    const sprintInfo = document.getElementById("sprint-info");
+    const issuesList = document.getElementById("issues-list");
+
+    if (!planning) {
+      sprintInfo.innerHTML = "<p>Nenhum planejamento encontrado.</p>";
+    } else {
+      sprintInfo.innerHTML = `
+        <p><strong>Sprint:</strong> ${planning.sprint}</p>
+        <p><strong>Time:</strong> ${planning.time}</p>
+        <p><strong>Tipo de Priorização:</strong> ${planning.tipo}</p>
+      `;
+
+      if (!planning.issues || planning.issues.length === 0) {
+        issuesList.innerHTML = "<p>Não há issues cadastradas.</p>";
+      } else {
+        planning.issues.forEach((issue, index) => {
+          const div = document.createElement("div");
+          div.classList.add("card");
+          div.style.marginBottom = "20px";
+
+          div.innerHTML = `
+            <h3>Issue #${issue}</h3>
+            <div>${renderVotingOptions(planning.tipo, id, index)}</div>
+          `;
+
+          issuesList.appendChild(div);
+        });
+      }
+    }
+
+    function renderVotingOptions(tipo, planningId, issueIndex) {
+      let options = [];
+      if (tipo.toLowerCase() === "fibonacci") {
+        options = [1,2,3,5,8,13,21];
+      } else if (tipo.toLowerCase() === "esforço+valor") {
+        options = ["Baixo Esforço + Alto Valor", "Médio Esforço + Médio Valor", "Alto Esforço + Baixo Valor"];
+      } else if (tipo.toLowerCase() === "horas") {
+        options = ["1h", "2h", "4h", "8h", "16h"];
+      }
+
+      return options.map(opt => `
+        <button class="custom-btn" onclick="vote(${planningId}, ${issueIndex}, '${opt}')">${opt}</button>
+      `).join(" ");
+    }
+
+    function vote(planningId, issueIndex, value) {
+      const votesKey = "votes";
+      const allVotes = JSON.parse(localStorage.getItem(votesKey) || "{}");
+
+      if (!allVotes[planningId]) allVotes[planningId] = {};
+      if (!allVotes[planningId][issueIndex]) allVotes[planningId][issueIndex] = [];
+
+      allVotes[planningId][issueIndex].push(value);
+      localStorage.setItem(votesKey, JSON.stringify(allVotes));
+
+      alert(`Voto registrado para Issue #${planning.issues[issueIndex]}: ${value}`);
+    }
+  </script>
+</body>
+</html>

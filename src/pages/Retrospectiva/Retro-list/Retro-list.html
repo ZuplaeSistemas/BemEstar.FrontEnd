@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestao Agil - Listar Retrospectiva</title>
+  <link rel="stylesheet" href="../../../reset.css">
+  <link rel="stylesheet" href="../../../styles.css">
+
+</head>
+
+<body>
+  <header>
+    <img src="https://youxgroup.com.br/wp-content/uploads/2022/12/logo-youX-branco.svg" alt="Logo YouX" width="150">
+    <nav>
+      <ul class="menu">
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../Retro-create/Retro-create.html">Cadastrar</a></li>
+        <li><a href="./../Retro-list/Retro-list.html">Listar</a></li>
+                
+
+
+      </ul>
+    </nav>
+  </header>
+ <main class="main-bg">
+  <h1>Listar Retrospectivas</h1>
+
+  <!-- 🔍 Filtro por time -->
+  <div style="margin-bottom: 15px; color: #343434;">
+    <label for="filter-time"><strong>Filtrar por Time:</strong></label>
+    <input 
+      type="text" 
+      id="filter-time" 
+      placeholder="Digite..." 
+      style="padding: 5px; border-radius: 6px; border: 1px solid #ccc; width: 250px;"
+    >
+  </div>
+
+  <table style="width:100%; border-collapse: collapse; text-align: left; color: #343434;">
+    <thead>
+      <tr style="background: #343434;">
+        <th style="padding: 8px; border-bottom: 2px solid #343434;">Time</th>
+        <th style="padding: 8px; border-bottom: 2px solid #343434;">Sprint</th>
+        <th style="padding: 8px; border-bottom: 2px solid #343434;">Abrir</th>
+      </tr>
+    </thead>
+    <tbody id="planning-list">
+      <tr>
+        <td colspan="3" style="padding: 8px;">Não há dados cadastrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<script>
+  // Exemplo de dados (depois troca pelo fetch da API)
+  const Retrospectivas = [
+    { id: 1, time: "Sicarf-RO", sprint: "Sprint 228/01" },
+    { id: 2, time: "Sicarf-RO", sprint: "Sprint 229/02" },
+    { id: 3, time: "IAT-PR", sprint: "Sprint 01" },
+    { id: 4, time: "IAT-PR", sprint: "Sprint 02" }
+  ];
+
+  const tbody = document.getElementById("planning-list");
+  const filterInput = document.getElementById("filter-time");
+
+  function renderTable(data) {
+    tbody.innerHTML = "";
+    if (data.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="3" style="padding:8px;">Nenhuma retrospectiva encontrada.</td></tr>`;
+      return;
+    }
+
+    data.forEach(plan => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">${plan.time}</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">${plan.sprint}</td>
+        <td style="padding: 8px; border-bottom: 1px solid #eee;">
+          <button 
+            onclick="abrirRetrospectiva(${plan.id})" 
+            style="background:#8E2B39; color:#f4f4f4; border:none; border-radius:6px; padding:6px 12px; cursor:pointer;"
+          >
+            Abrir
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Função para redirecionar para Retro-play.html com o ID
+  function abrirRetrospectiva(id) {
+    window.location.href = `./retro-play.html?id=${id}`;
+  }
+
+  // Render inicial
+  renderTable(Retrospectivas);
+
+  // Filtro por time
+  filterInput.addEventListener("input", () => {
+    const value = filterInput.value.toLowerCase();
+    const filtered = Retrospectivas.filter(p => p.time.toLowerCase().includes(value));
+    renderTable(filtered);
+  });
+</script>
+
+
+
+  <footer>
+    <p>&copy; 2025 - YouXGroup</p>
+  </footer>
+  <script type="module" src="./retro-list.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retrospectiva</title>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="../../../styles.css">
+</head>
+ 
+
+</head>
+<body>
+  <header>
+    <img src="https://youxgroup.com.br/wp-content/uploads/2022/12/logo-youX-branco.svg" alt="Logo YouX" width="150">
+    <nav>
+      <ul class="menu">
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../../../pages/dashboard/index.html">Dashboard</a></li>
+        <li><a href="./../../../pages/Planejamento/index.html">Planejamento</a></li>
+        <li><a href="./../../../pages/Retrospectiva/index.html">Retrospectiva</a></li>
+        <li><a href="./../../../pages/Material de Apoio/Index.html">Material de Apoio</a></li>
+      </ul>
+    </nav>
+    <!--<button id="addColumn">Adicionar Coluna</button> ** Botão para adicionar coluna --> 
+    
+    
+  </header>
+<h1>Retrospectiva</h1>
+
+  <main class="board" id="board">
+    <div class="column">
+      <h2>O que foi bem</h2>
+      <div class="cards"></div>
+      <button class="add-card-btn">+ Adicionar Card</button>
+    </div>
+    <div class="column">
+      <h2>O que pode melhorar</h2>
+      <div class="cards"></div>
+      <button class="add-card-btn">+ Adicionar Card</button>
+    </div>
+    <div class="column">
+      <h2>Ações</h2>
+      <div class="cards"></div>
+      <button class="add-card-btn">+ Adicionar Card</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EasyRetro Clone - Design by YouX</p>
+  </footer>
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const board = document.getElementById('board');
+    const addColumnBtn = document.getElementById('addColumn');
+
+    // Criar nova coluna
+    addColumnBtn.addEventListener('click', () => {
+      const column = document.createElement('div');
+      column.classList.add('column');
+      column.innerHTML = `
+        <h2 contenteditable="true">Nova Coluna</h2>
+        <div class="cards"></div>
+        <button class="add-card-btn">+ Adicionar Card</button>
+      `;
+      board.appendChild(column);
+      addCardFunctionality(column.querySelector('.add-card-btn'));
+    });
+
+    // Função para adicionar card
+    function addCardFunctionality(button) {
+      button.addEventListener('click', () => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.contentEditable = true;
+        card.textContent = 'Novo card';
+        button.previousElementSibling.appendChild(card);
+      });
+    }
+
+    // Aplicar função em todos os botões iniciais
+    document.querySelectorAll('.add-card-btn').forEach(btn => addCardFunctionality(btn));
+  </script>
+</body>
+</html>
